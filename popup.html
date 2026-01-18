@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8" />
+<title>Social Proof Popup</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: transparent;
+  }
+
+  #popup {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(15, 23, 42, 0.95);
+    color: #ffffff;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    max-width: 280px;
+    pointer-events: none;
+    z-index: 999999;
+  }
+
+  #popup.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .title {
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+
+  .time {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 4px;
+  }
+</style>
+</head>
+
+<body>
+
+<div id="popup"></div>
+
+<script>
+  const messages = [
+    "Мария от Пловдив закупи Premium пакет",
+    "Иван от София се записа за програмата",
+    "Елена от Варна взе VIP достъп",
+    "Георги от Бургас направи поръчка",
+    "Анна от Русе започна обучението",
+    "Николай от Стара Загора закупи пакет",
+    "Десислава от Благоевград се включи"
+  ];
+
+  const times = [
+    "преди 1 минута",
+    "преди 2 минути",
+    "преди 5 минути",
+    "преди 7 минути",
+    "преди 10 минути"
+  ];
+
+  const popup = document.getElementById("popup");
+
+  function showPopup() {
+    const message = messages[Math.floor(Math.random() * messages.length)];
+    const time = times[Math.floor(Math.random() * times.length)];
+
+    popup.innerHTML = `
+      <div class="title">✅ ${message}</div>
+      <div class="time">${time}</div>
+    `;
+
+    popup.classList.add("show");
+
+    setTimeout(() => {
+      popup.classList.remove("show");
+    }, 6000);
+  }
+
+  setTimeout(showPopup, 8000);
+  setInterval(showPopup, 25000);
+</script>
+
+</body>
+</html>
